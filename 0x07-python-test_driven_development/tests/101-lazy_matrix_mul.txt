@@ -1,4 +1,4 @@
-# 101-lazy_matrix_mul.txt
+# Peter Sylvester Lansana
 
 =================================
 How to Use 101-lazy_matrix_mul.py
