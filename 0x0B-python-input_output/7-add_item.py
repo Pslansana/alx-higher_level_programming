@@ -1,21 +1,16 @@
 #!/usr/bin/python3
-"""Adds all arguments to a Python list and saves them to a file"""
-
+"""Add all arguments to a Python list and save them to a file."""
 import sys
-from typing import List
-save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 
-def add_item(args: List[str]):
-    """Adds all arguments to a list and saves them to a file"""
+if __name__ == "__main__":
+    save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+    load_from_json_file = \
+        __import__('6-load_from_json_file').load_from_json_file
 
     try:
         items = load_from_json_file("add_item.json")
-    except:
+    except FileNotFoundError:
         items = []
-    items.extend(args)
+    items.extend(sys.argv[1:])
     save_to_json_file(items, "add_item.json")
-
-if __name__ == '__main__':
-    add_item(sys.argv[1:])
