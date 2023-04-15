@@ -1,28 +1,20 @@
-#!/usr/bin/python3
-"""Defines a class Students"""
+class Student:
+    """Defines a student by their first name, last name, and age"""
 
-
-class Student():
-    """
-    Public Attributes:
-        first_name
-        last_name
-        age
-    Public Methods:
-        to_json: retrieves its dictionary representation
-    """
     def __init__(self, first_name, last_name, age):
-        """
-        Initializes student with full name and age
-        """
+        """Instantiates a new Student object with given attributes"""
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
-        """
-        Returns dictionary description with simple data structure
-        (list, dictionary, dictionary, string)
-        for JSON serialization of an object
-        """
-        return self.__dict__
+    def to_json(self, attrs=None):
+        """Returns a dictionary representation of the Student instance"""
+        if attrs is None:
+            return self.__dict__
+        else:
+            new_dict = {}
+            for attr in attrs:
+                if hasattr(self, attr):
+                    new_dict[attr] = getattr(self, attr)
+            return new_dict
+
