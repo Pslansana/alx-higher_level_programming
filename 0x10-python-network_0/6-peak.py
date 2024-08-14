@@ -1,15 +1,31 @@
 #!/usr/bin/python3
 """
-Write a function that finds a peak in a list of unsorted integers.
-
-    => Prototype: def find_peak(list_of_integers):
-    => You are not allowed to import any module
-    => Your algorithm must have the lowest complexity (hint: you don’t need to go through all numbers to find a peak)
-    => 6-peak.py must contain the function
-    => 6-peak.txt must contain the complexity of your algorithm: O(log(n)), O(n), O(nlog(n)) or O(n2)
-    => Note: there may be more than one peak in the list
+Function that finds a peak in a list of unsorted integers
 """
 
 
 def find_peak(list_of_integers):
-    """ This is a method that define the `find_peak` """
+    """
+    finds num that's greater than both left and right
+    """
+    if len(list_of_integers) == 0:
+        return None
+
+    l = list_of_integers
+    beg = 0
+    end = len(l)-1
+
+    if l[beg] > l[beg+1]:
+        return l[beg]
+    if l[end] > l[end-1]:
+        return l[end]
+
+    mid = (beg+end)//2
+    if l[mid-1] < l[mid] and l[mid+1] < l[mid]:
+        return l[mid]
+    if l[mid] < l[mid-1]:
+        return find_peak(l[beg:mid+1])
+    elif l[mid] < l[mid+1]:
+        return find_peak(l[mid:end+1])
+    else:
+        return l[beg]
