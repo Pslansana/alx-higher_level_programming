@@ -1,3 +1,3 @@
 #!/bin/bash
-# JSON POST request to a URL passed as the first arg and displays the body of the response
-curl -s -H "Content-Type: application/json" -d @"$2" "$1".
+# Take in filename and URL, post contents of file; Usage: ./101-post_json.sh 0.0.0.0:5000/route_json my_json_0 ; echo ""
+curl -s -X POST -H "Content-Type: application/json" -d @"$2" "$1"
